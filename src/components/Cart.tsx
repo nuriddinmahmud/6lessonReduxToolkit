@@ -9,14 +9,15 @@ const badgeStyle: Record<Badge, string> = {
   sale: "bg-yellow-100 text-yellow-700",
 };
 
-type Props = { product: Product };
+type Props = { product?: Product };
 
 export default function ProductCard({ product }: Props) {
+  if (!product) return null;
+
   const dispatch = useAppDispatch();
   const wished = useAppSelector((s) => s.wishlist.ids.includes(product.id));
 
   return (
-    // h-full + flex-col -> balandlik teng; tugma pastda qoladi
     <div className="relative h-full rounded-3xl bg-white shadow-sm ring-1 ring-zinc-200 p-3 flex flex-col">
       {/* heart */}
       <button
@@ -78,7 +79,7 @@ export default function ProductCard({ product }: Props) {
 
         {/* title + rating */}
         <div className="mt-2">
-          {/* min-h -> satrlar turlicha bo‘lsa ham tugma joyi siljimasin */}
+          {/* min-h -> satrlar turlicha bo‘lsa ham tugма joyi siljimasin */}
           <div className="text-[14px] text-zinc-900 min-h-[56px]">
             {product.title}
           </div>
@@ -95,7 +96,7 @@ export default function ProductCard({ product }: Props) {
           )}
         </div>
 
-        {/* spacer -> tugma pastga itariladi */}
+        {/* spacer -> tugма pastga itariladi */}
         <div className="mt-auto" />
       </div>
 

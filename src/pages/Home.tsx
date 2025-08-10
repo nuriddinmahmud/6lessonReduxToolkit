@@ -1,5 +1,5 @@
 import { useAppSelector } from "../hooks";
-import ProductCard from "../pages/Cart";
+import ProductCard from "../components/Cart";
 
 export default function Home() {
   const products = useAppSelector((s) => s.products.list);
