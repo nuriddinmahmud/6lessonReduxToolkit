@@ -1,15 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsReducer from "../features/products/productsSlice";
-import cartReducer from "../features/cart/cartSlice";
-import wishlistReducer from "../features/wishlist/wishlistSlice";
+import cart from "../features/cart/cartSlice";
+import wishlist from "../features/wishlist/WishlistSlice";
+import products from "../features/products/productsSlice";
 
 export const store = configureStore({
-  reducer: {
-    products: productsReducer,
-    cart: cartReducer,
-    wishlist: wishlistReducer,
-  },
-  middleware: (gDM) => gDM({ serializableCheck: false }),
+  reducer: { cart, wishlist, products },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

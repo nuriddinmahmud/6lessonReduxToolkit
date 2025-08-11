@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { addToCart } from "../features/cart/cartSlice";
-import { toggleWishlist } from "../features/wishlist/wishlistSlice";
-import type { Product, Badge } from "../features/products/types";
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { addToCart } from "../../features/cart/cartSlice";
+import { toggleWishlist } from "../../features/wishlist/WishlistSlice"; 
+import type { Product, Badge } from "../../features/products/types";
 
 const badgeStyle: Record<Badge, string> = {
   guarantee: "bg-pink-100 text-pink-700",
@@ -33,31 +33,37 @@ export default function ProductCard({ product }: Props) {
       {/* image */}
       <div className="rounded-2xl overflow-hidden">
         <div className="aspect-[3/4] grid place-items-center bg-white">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="max-h-full max-w-full object-contain"
-          />
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.title}
+              className="max-h-full max-w-full object-contain"
+            />
+          ) : (
+            <div className="text-sm text-zinc-400">No image</div>
+          )}
         </div>
       </div>
 
-      {/* middle content grows (flex-1) */}
+      {/* middle content */}
       <div className="mt-2 flex-1 flex flex-col">
         {/* badges */}
-        <div className="flex flex-wrap gap-2">
-          {product.badges?.map((b) => (
-            <span
-              key={b}
-              className={`rounded-full px-2.5 py-1 text-[12px] font-semibold ${badgeStyle[b]}`}
-            >
-              {b === "guarantee"
-                ? "Гарантия низкой цены"
-                : b === "super"
-                ? "Суперцена"
-                : "Распродажа"}
-            </span>
-          ))}
-        </div>
+        {product.badges?.length ? (
+          <div className="flex flex-wrap gap-2">
+            {product.badges.map((b) => (
+              <span
+                key={b}
+                className={`rounded-full px-2.5 py-1 text-[12px] font-semibold ${badgeStyle[b]}`}
+              >
+                {b === "guarantee"
+                  ? "Гарантия низкой цены"
+                  : b === "super"
+                  ? "Суперцена"
+                  : "Распродажа"}
+              </span>
+            ))}
+          </div>
+        ) : null}
 
         {/* price */}
         <div className="mt-3 space-y-1">
@@ -79,7 +85,6 @@ export default function ProductCard({ product }: Props) {
 
         {/* title + rating */}
         <div className="mt-2">
-          {/* min-h -> satrlar turlicha bo‘lsa ham tugма joyi siljimasin */}
           <div className="text-[14px] text-zinc-900 min-h-[56px]">
             {product.title}
           </div>
@@ -96,11 +101,11 @@ export default function ProductCard({ product }: Props) {
           )}
         </div>
 
-        {/* spacer -> tugма pastga itariladi */}
+        {/* spacer */}
         <div className="mt-auto" />
       </div>
 
-      {/* buy button — har doim pastda */}
+      {/* buy button */}
       <button
         onClick={() => dispatch(addToCart(product))}
         className="mt-3 w-full rounded-2xl bg-violet-600 py-3 text-white text-[16px] font-bold hover:brightness-95"
