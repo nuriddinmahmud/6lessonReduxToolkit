@@ -12,12 +12,8 @@ const wishlistSlice = createSlice({
         ? state.ids.filter((id) => id !== payload)
         : [...state.ids, payload];
     },
-    clearWishlist: (state) => {
-      state.ids = [];
-    },
-    setWishlist: (state, { payload }: PayloadAction<string[]>) => {
-      state.ids = payload;
-    },
+    clearWishlist: (state) => { state.ids = []; },
+    setWishlist: (state, { payload }: PayloadAction<string[]>) => { state.ids = payload; },
   },
 });
 

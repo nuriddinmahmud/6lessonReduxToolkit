@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { addToCart } from "../../features/cart/cartSlice";
-import { toggleWishlist } from "../../features/wishlist/WishlistSlice"; 
+import { toggleWishlist } from "../../features/wishlist/wishlistSlice"; 
 import type { Product, Badge } from "../../features/products/types";
 
 const badgeStyle: Record<Badge, string> = {

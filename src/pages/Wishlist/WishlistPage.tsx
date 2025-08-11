@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { toggleWishlist, clearWishlist } from "../../features/wishlist/WishlistSlice";
+import { toggleWishlist, clearWishlist } from "../../features/wishlist/wishlistSlice";
 import { addToCart } from "../../features/cart/cartSlice";
 
 function formatUZS(n: number) {
